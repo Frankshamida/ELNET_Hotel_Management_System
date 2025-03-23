@@ -1,0 +1,90 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels;
+@model RegisterViewModel;
+
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <!-- Logo with Animation -->
+        <img src="/images/6.png" alt="Logo" class="logo">
+
+        <!-- Register Title -->
+        <h2 class="text-center mb-2">Register</h2>
+
+        <!-- Register Form -->
+        <form asp-action="Register" method="post">
+            <!-- Validation Summary -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Name Field with Icon -->
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i> <!-- Name Icon -->
+                    </span>
+                    <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- Email Field with Icon -->
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-envelope"></i> <!-- Email Icon -->
+                    </span>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password Field with Icon -->
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-lock"></i> <!-- Password Icon -->
+                    </span>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Enter your password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- Confirm Password Field with Icon -->
+            <div class="form-group mb-3">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-lock"></i> <!-- Confirm Password Icon -->
+                    </span>
+                    <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Confirm your password" />
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- Register Button -->
+            <input type="submit" value="Register" class="btn btn-success w-100 p-2" />
+
+            <!-- Login Link -->
+            <p class="text-center mt-2">
+                Already have an account? <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
+            </p>
+
+            <!-- Back Link -->
+            <div class="text-center">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+	}
+}

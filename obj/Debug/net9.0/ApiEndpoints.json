@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "RETRA_HOTEL_SYSTEM_2.Controllers.EmployeeController",
+    "Method": "CreateEmployee",
+    "RelativePath": "api/Employee/create-employee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employee",
+        "Type": "RETRA_HOTEL_SYSTEM_2.Models.Employee",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RETRA_HOTEL_SYSTEM_2.Controllers.EmployeeController",
+    "Method": "GetEmployees",
+    "RelativePath": "api/Employee/get-employees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RETRA_HOTEL_SYSTEM_2.Controllers.RoomController",
+    "Method": "CreateRoom",
+    "RelativePath": "api/Room/create-room",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "RETRA_HOTEL_SYSTEM_2.Models.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RETRA_HOTEL_SYSTEM_2.Controllers.RoomController",
+    "Method": "GetRooms",
+    "RelativePath": "api/Room/get-rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RETRA_HOTEL_SYSTEM_2.Controllers.UserAccountController",
+    "Method": "GetUserAccounts",
+    "RelativePath": "api/UserAccount/get-user-accounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

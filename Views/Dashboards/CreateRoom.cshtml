@@ -1,0 +1,77 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels
+@model RETRA_HOTEL_SYSTEM_2.ViewModels.RoomViewModel
+
+@{
+    ViewData["Title"] = "Create Room";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+
+<div class="account-box">
+    <h2 class="text-center">Create Room</h2>
+    <form asp-action="CreateRoom" method="post" id="createRoomForm">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-grid">
+            <div>
+                <div class="mb-3">
+                    <label asp-for="RoomNumber" class="form-label">Room Number</label>
+                    <input asp-for="RoomNumber" class="form-control" placeholder="Enter room number" />
+                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Floor" class="form-label">Floor</label>
+                    <input asp-for="Floor" class="form-control" placeholder="Enter floor" />
+                    <span asp-validation-for="Floor" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RoomType" class="form-label">Room Type</label>
+                    <input asp-for="RoomType" class="form-control" placeholder="Enter room type" />
+                    <span asp-validation-for="RoomType" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="BedType" class="form-label">Bed Type</label>
+                    <input asp-for="BedType" class="form-control" placeholder="Enter bed type" />
+                    <span asp-validation-for="BedType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="mb-3">
+                    <label asp-for="PricePerNight" class="form-label">Price Per Night</label>
+                    <input asp-for="PricePerNight" class="form-control" placeholder="Enter price per night" />
+                    <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label">Status</label>
+                    <input asp-for="Status" class="form-control" placeholder="Enter status" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MaxOccupancy" class="form-label">Max Occupancy</label>
+                    <input asp-for="MaxOccupancy" class="form-control" placeholder="Enter max occupancy" />
+                    <span asp-validation-for="MaxOccupancy" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Amenities" class="form-label">Amenities</label>
+                    <input asp-for="Amenities" class="form-control" placeholder="Enter amenities" />
+                    <span asp-validation-for="Amenities" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label">Image URL</label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="Enter image URL" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Create Room" class="btn btn-primary w-100 p-2 mb-3" />
+    </form>
+
+</div>

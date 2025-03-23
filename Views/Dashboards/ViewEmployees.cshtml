@@ -1,0 +1,162 @@
+﻿@model List<Employee>
+
+@{
+    ViewData["Title"] = "View Employee";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<h2>Employees</h2>
+
+<!-- Create User Button and Search Bar -->
+<div class="row mb-3">
+    <div class="col-md-8">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by Name or Company ID" />
+    </div>
+    <div class="col-md-4 text-right">
+        <button id="createUserBtn" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Create User
+        </button>
+    </div>
+</div>
+
+<!-- Employee Table -->
+<table class="table" id="employeeTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Role</th>
+            <th>Company ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Email</td>
+                <td>@employee.Department</td>
+                <td>@employee.Role</td>
+                <td>@employee.CompanyId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Include necessary scripts -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/Dashboards.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Handle "Create User" button click
+        $('#createUserBtn').click(function (e) {
+            e.preventDefault(); // Prevent default link behavior
+
+            // Fetch the CreateUser.cshtml content using AJAX
+            $.ajax({
+                url: '/Dashboards/CreateUser', // URL to the CreateUser action
+                type: 'GET',
+                success: function (response) {
+                    // Inject the fetched content into the #content div
+                    $('#content').html(response);
+
+                    // Add event listener for the Generate Company ID button
+                    $('#generateCompanyIdBtn').click(function () {
+                        const uniqueId = Math.floor(10000000 + Math.random() * 90000000).toString();
+                        $('input[name="CompanyId"]').val(uniqueId);
+                    });
+
+                    // Handle form submission via AJAX
+                    $('#createUserForm').on('submit', function (e) {
+                        e.preventDefault(); // Prevent default form submission
+
+                        $.ajax({
+                            url: '/Dashboards/CreateUser',
+                            type: 'POST',
+                            data: $(this).serialize(),
+                            success: function (response) {
+                                if (response.success) {
+                                    // Show success message
+                                    $('#successMessage').text(response.message).show();
+
+                                    // Reset form fields
+                                    $('#createUserForm')[0].reset();
+
+                                    // Hide success message after 3 seconds
+                                    setTimeout(function () {
+                                        $('#successMessage').hide();
+                                    }, 3000);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error submitting form:', error);
+                            }
+                        });
+                    });
+
+                    // Disable the submit button initially
+                    const submitButton = $('#createUserForm button[type="submit"]');
+                    submitButton.prop('disabled', true);
+
+                    // Add event listeners to form fields to enable/disable the submit button
+                    $('#createUserForm input, #createUserForm select').on('input change', function () {
+                        let isFormValid = true;
+
+                        // Check if all required fields are filled
+                        $('#createUserForm input[required], #createUserForm select[required]').each(function () {
+                            if ($(this).val() === '') {
+                                isFormValid = false;
+                                return false; // Exit the loop early if any field is empty
+                            }
+                        });
+
+                        // Enable/disable the submit button based on form validity
+                        submitButton.prop('disabled', !isFormValid);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading Create User form:', error);
+                    $('#content').html('<p class="text-danger">Error loading form. Please try again.</p>');
+                }
+            });
+        });
+
+        // Initialize search functionality
+        function initializeSearch(tableId) {
+            // Function to filter the table based on search input
+            function filterTable() {
+                const searchText = $('#searchInput').val().toLowerCase();
+
+                $(`${tableId} tbody tr`).each(function () {
+                    const firstName = $(this).find('td:eq(0)').text().toLowerCase();
+                    const lastName = $(this).find('td:eq(1)').text().toLowerCase();
+                    const companyId = $(this).find('td:eq(5)').text().toLowerCase();
+
+                    const matchesSearch = (
+                        firstName.includes(searchText) ||
+                        lastName.includes(searchText) ||
+                        companyId.includes(searchText)
+                    );
+
+                    if (matchesSearch) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Attach event listener to search bar
+            $('#searchInput').on('input', filterTable);
+        }
+
+        // Initialize search for the employee table
+        initializeSearch('#employeeTable');
+    });
+</script>

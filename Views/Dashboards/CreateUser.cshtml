@@ -1,0 +1,109 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels
+@model EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Create User Account";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+    <div class="account-box">
+        <!-- Logo with Animation --
+
+        <!-- Create User Account Title -->
+        <h2 class="text-center">Create User Account</h2>
+
+        <!-- Create User Account Form -->
+        <form asp-action="CreateUser" method="post">
+            <!-- Validation Summary -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Two-Column Grid Layout -->
+            <div class="form-grid">
+                <!-- First Column -->
+                <div>
+                    <!-- First Name Field -->
+                    <div class="mb-3">
+                        <label asp-for="FirstName" class="form-label">First Name</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Last Name Field -->
+                    <div class="mb-3">
+                        <label asp-for="LastName" class="form-label">Last Name</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Enter phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Second Column -->
+                <div>
+                    <!-- Hire Date Field -->
+                    <div class="mb-3">
+                        <label asp-for="HireDate" class="form-label">Hire Date</label>
+                        <input asp-for="HireDate" class="form-control" />
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>
+
+                    <!-- Salary Field -->
+                    <div class="mb-3">
+                        <label asp-for="Salary" class="form-label">Salary</label>
+                        <input asp-for="Salary" class="form-control" placeholder="Enter salary" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+
+                    <!-- Department Field -->
+                    <div class="mb-3">
+                        <label asp-for="Department" class="form-label">Department</label>
+                        <select asp-for="Department" class="form-control">
+                            <option value="Front Desk">Front Desk</option>
+                            <option value="House Keeping">House Keeping</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+
+                    <!-- Role Field -->
+                    <div class="mb-3">
+                        <label asp-for="Role" class="form-label">Role</label>
+                        <select asp-for="Role" class="form-control">
+                            <option value="head_housekeeping">Head Housekeeping</option>
+                            <option value="head_frontdesk">Head Front Desk</option>
+                            <option value="housekeeping_staff">Housekeeping Staff</option>
+                            <option value="frontdesk_staff">Front Desk Staff</option>
+                            <option value="maintenance">Maintenance</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company ID Field -->
+            <div class="mb-3">
+                <label asp-for="CompanyId" class="form-label">Company ID</label>
+                <div class="input-group">
+                    <input asp-for="CompanyId" class="form-control" readonly />
+                    <button type="button" id="generateCompanyIdBtn" class="btn btn-outline-secondary">Generate Company ID</button>
+                </div>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+
+            <!-- Create Account Button -->
+            <input type="submit" value="Create Account" class="btn btn-primary w-100 p-2 mb-3" />
+
+        </form>
+    </div>

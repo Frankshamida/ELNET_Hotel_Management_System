@@ -1,0 +1,44 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels;
+@model LoginViewModel;
+
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+
+<div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Dashboard</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a asp-controller="Dashboards" asp-action="Admin" class="btn btn-sidebar"><i class="fas fa-chart-pie"></i> <span class="menu-text">Dashboard</span></a></li>
+            <li><a href="#" id="createUserBtn" class="btn btn-sidebar"><i class="fas fa-user-plus"></i> <span class="menu-text">Create User</span></a></li>
+            <li><a href="#" id="viewEmployeesBtn" class="btn btn-sidebar"><i class="fas fa-users"></i> <span class="menu-text">View Employees</span></a></li>
+            <li><a href="#" id="createRoomBtn" class="btn btn-sidebar"><i class="fas fa-bed"></i> <span class="menu-text">Create Rooms</span></a></li>
+            <li><a href="#" id="viewRoomBtn" class="btn btn-sidebar"><i class="fas fa-bed"></i> <span class="menu-text">View Rooms</span></a></li>
+            <li><a asp-controller="Account" asp-action="Logout" class="btn btn-sidebar"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
+        </ul>
+        <button class="toggle-sidebar-btn" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+    </div>
+
+
+
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <header class="main-header">
+            <h1>Welcome, Admin</h1>
+        </header>
+        <div id="content" class="content">
+            <!-- Content will be dynamically loaded here -->
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/Dashboards.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+

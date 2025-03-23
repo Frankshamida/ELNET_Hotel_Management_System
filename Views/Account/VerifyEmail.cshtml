@@ -1,0 +1,46 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels;
+@model VerifyEmailViewModel;
+
+@{
+    ViewData["Title"] = "Verify Email";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <!-- Verify Email Title -->
+        <h2 class="text-center mb-2">Verify Email</h2>
+
+        <!-- Verify Email Form -->
+        <form asp-action="VerifyEmail" method="post">
+            <!-- Validation Summary -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Email Field with Icon -->
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-envelope"></i> <!-- Email Icon -->
+                    </span>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Verify Button -->
+            <input type="submit" value="Verify" class="btn btn-success w-100 p-2" />
+
+            <!-- Back Link -->
+            <div class="text-center mt-2">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

@@ -1,0 +1,81 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels;
+@model LoginViewModel;
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <!-- Logo with Animation -->
+        <img src="/images/6.png" alt="Logo" class="logo mb-4">
+
+        <!-- Login Title -->
+        <h2 class="text-center">Login</h2>
+
+        <!-- Login Form -->
+        <form asp-action="Login" method="post">
+            <!-- Validation Summary -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Email Field with Icon -->
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-envelope"></i> <!-- Email Icon -->
+                    </span>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password Field with Icon -->
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-lock"></i> <!-- Password Icon -->
+                    </span>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Enter your password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- Forgot Password Link -->
+            <div class="float-end mb-3">
+                <a asp-controller="Account" asp-action="VerifyEmail" class="text-decoration-none text-primary">
+                    Forgot Password?
+                </a>
+            </div>
+
+            <!-- Remember Me Checkbox -->
+            <div class="form-check mb-3">
+                <label class="form-check-label">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    @Html.DisplayNameFor(a => a.RememberMe)
+                </label>
+            </div>
+
+            <!-- Login Button -->
+            <input type="submit" value="Login" class="btn btn-primary w-100 p-2 mb-3" />
+
+            <!-- Register Link -->
+            <p class="text-center mt-2">
+                Don't have an account? <a asp-controller="Account" asp-action="Register" class="text-decoration-none text-primary">Register</a>
+            </p>
+
+            <!-- Back Link -->
+            <div class="text-center">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none text-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

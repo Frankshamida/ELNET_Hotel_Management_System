@@ -1,0 +1,41 @@
+﻿@using RETRA_HOTEL_SYSTEM_2.ViewModels;
+@model LoginViewModel;
+
+@{
+    ViewData["Title"] = "Frontdesk";
+    Layout = "~/Views/Shared/_Dashboards.cshtml";
+}
+
+<div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>FRONTDESK</h2>
+        <ul>
+            <li><button id="dashboardBtn"><i class="fas fa-chart-pie"></i> Dashboard</button></li>
+            <li><button id="createUserBtn"><i class="fas fa-user-plus"></i> Create User</button></li>
+            <li><button id="viewEmployeesBtn"><i class="fas fa-users"></i> View Employees</button></li>
+            <li><button id="viewUserAccountsBtn"><i class="fas fa-user-circle"></i> Employee User Accounts</button></li>
+            <li><button id="createRoomsBtn"><i class="fas fa-bed"></i> Create Rooms</button></li>
+            <li><button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Welcome, Admin</h1>
+        </header>
+        <div id="content">
+            <!-- Content will be dynamically loaded here -->
+        </div>
+    </div>
+</div>
+
+<script src="/Admin/Admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
